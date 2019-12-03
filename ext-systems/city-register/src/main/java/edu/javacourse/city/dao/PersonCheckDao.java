@@ -19,6 +19,13 @@ public class PersonCheckDao {
             "AND adr.street_code = ? " +
             "AND adr.building =  ? ";
 
+
+    private IConnectionBuilder connectionBuilder;
+
+    public void setConnectionBuilder(IConnectionBuilder connectionBuilder) {
+        this.connectionBuilder = connectionBuilder;
+    }
+
     public PersonResponse checkPerson(PersonRequest request) throws PersonCheckException {
         PersonResponse response = new PersonResponse();
         String sql = SQL_REQUEST;
@@ -47,7 +54,6 @@ public class PersonCheckDao {
 
             if (request.getApartment() != null)
                 stm.setString(count++, request.getApartment());
-            System.out.println(stm.toString());
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
                 response.setRegestered(true);
@@ -58,8 +64,9 @@ public class PersonCheckDao {
         }
         return response;
     }
+
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost/city_register",
-                "postgres", "Gloezict1");
+        return connectionBuilder.getConnection();
+
     }
 }
