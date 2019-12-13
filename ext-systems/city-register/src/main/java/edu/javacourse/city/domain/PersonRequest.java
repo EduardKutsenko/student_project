@@ -8,6 +8,8 @@ public class PersonRequest {
 
     @XmlJavaTypeAdapter(value=LocalDateAdapter.class)
     private LocalDate dateOfBirth;
+    private Long streetCode;
+    private String building, extention, apartment;
 
     public Long getStreetCode() {
         return streetCode;
@@ -17,8 +19,7 @@ public class PersonRequest {
         this.streetCode = streetCode;
     }
 
-    private Long streetCode;
-    private String building, extention, apartment;
+
 
     public String getSurName() {
         return surName;
