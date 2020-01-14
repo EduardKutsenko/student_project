@@ -1,6 +1,6 @@
 package edu.javacourse.city.dao;
 
-import edu.javacourse.city.PersonResponse;
+import edu.javacourse.city.domain.PersonResponse;
 import edu.javacourse.city.domain.PersonRequest;
 import edu.javacourse.city.exception.PersonCheckException;
 import org.junit.Assert;

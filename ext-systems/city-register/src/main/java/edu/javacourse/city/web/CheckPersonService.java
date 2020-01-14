@@ -1,45 +1,40 @@
 package edu.javacourse.city.web;
 
-import edu.javacourse.city.PersonResponse;
-import edu.javacourse.city.dao.PersonCheckDao;
-import edu.javacourse.city.dao.PoolConnectionBuilder;
+import edu.javacourse.city.domain.PersonResponse;
 import edu.javacourse.city.domain.PersonRequest;
-import edu.javacourse.city.exception.PersonCheckException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.inject.Singleton;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-
 @Path("/check")
 public class CheckPersonService {
-    private static final Logger log = LoggerFactory.getLogger(CheckPersonService.class);
-    private PersonCheckDao dao;
-
-     @PostConstruct //do imediatelly after creation of object
-     @Singleton // object will not be is destroyed
-     public void init(){
-         log.info("START");
-         dao = new PersonCheckDao();
-         dao.setConnectionBuilder(new PoolConnectionBuilder());
-     }
-
-//     @PreDestroy
-//     public void destroy(){
-//         log.info("FINISH");
-//     }
+  //  @GET
+   // @Path("/{id}")
+  //  @Produces(MediaType.APPLICATION_JSON)
+//    public String checkPerson(@PathParam("id") int simpleId,
+//                              @QueryParam("name") String simpleName) {
+//        return simpleId + ": " + simpleName;
+//    public PersonResponse personResponse(@PathParam("id") int simpleId,
+//                                         @QueryParam("name") String simpleName) {
+//        return new PersonResponse();
+//public PersonRequest checkPerson(){
+//        PersonRequest pr = new PersonRequest();
+//        pr.setSurName("Semenov");
+//        pr.setGivenName("Pavel");
+//        pr.setPatronimicName("Trifonovich");
+//        pr.setStreetCode(1L);
+//        pr.setDateOfBirth(LocalDate.of(1995,03,9));
+//        pr.setBuilding("3");
+//        pr.setExtention("EX");
+//        pr.setApartment("4657A");
+//        return pr;
+//    }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    //public PersonResponse checkPerson(@PathParam("id") int simpleId,
-//                                      @QueryParam("name") String simpleName){
-    public PersonResponse checkPerson(PersonRequest request) throws PersonCheckException {
-        log.info(request.toString());
-        return dao.checkPerson(request);
+    @Consumes(MediaType.APPLICATION_JSON)
+    public PersonResponse checkPerson(PersonRequest request) {
+        System.out.println(request.toString());
+        return new PersonResponse();
     }
 }

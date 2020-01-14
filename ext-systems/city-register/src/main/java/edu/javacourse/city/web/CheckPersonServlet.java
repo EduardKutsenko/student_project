@@ -1,6 +1,6 @@
 package edu.javacourse.city.web;
 
-import edu.javacourse.city.PersonResponse;
+import edu.javacourse.city.domain.PersonResponse;
 import edu.javacourse.city.dao.PersonCheckDao;
 import edu.javacourse.city.dao.PoolConnectionBuilder;
 import edu.javacourse.city.domain.PersonRequest;
@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -49,9 +48,9 @@ public class CheckPersonServlet extends HttpServlet {
 //        pr.setBuilding("3");
 //        pr.setExtention("EX");
 //        pr.setApartment("4657A");
-        pr.setBuilding("building");
-        pr.setExtention("extension");
-        pr.setApartment("apartment");
+        pr.setBuilding(req.getParameter("building"));
+        pr.setExtention(req.getParameter("extension"));
+        pr.setApartment(req.getParameter("apartment"));
 
         try {
             PersonResponse presp = dao.checkPerson(pr);

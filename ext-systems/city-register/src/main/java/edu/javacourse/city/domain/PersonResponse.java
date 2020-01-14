@@ -1,4 +1,4 @@
-package edu.javacourse.city;
+package edu.javacourse.city.domain;
 
 public class PersonResponse {
     private boolean isRegestered;
